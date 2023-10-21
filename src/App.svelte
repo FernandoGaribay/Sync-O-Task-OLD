@@ -1,7 +1,7 @@
 <script>
-  import Counter from './lib/Counter.svelte'
+    import TodoItems from "./components/TodoItems.svelte";
+
+
 </script>
 
-  <div class="card">
-    <Counter />
-  </div>
+<TodoItems />
