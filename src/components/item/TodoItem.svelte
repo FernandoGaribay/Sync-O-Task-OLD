@@ -1,11 +1,18 @@
 <script lang="ts">
+    import { createEventDispatcher } from "svelte";
     import type { Task } from "../../model";
     import TodoItemActions from "./TodoItemActions.svelte";
+
+    const dispatch = createEventDispatcher();
+
+    function onTitleBlur(){
+        dispatch("titleChange")
+    }
 
     export let data: Task;
 </script>
 <div>
-    <span spellcheck="false" contenteditable="true" bind:textContent={data.title}>{data.title}</span>
+    <span spellcheck="false" contenteditable="true" on:blur={onTitleBlur} bind:textContent={data.title}></span>
     <TodoItemActions on:delete on:edit/>
 </div>
 

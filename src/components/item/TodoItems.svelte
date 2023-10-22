@@ -8,13 +8,15 @@
     export let items: Task[];
 
     function onDelete(task: Task) {
-        items = items.filter((t: Task) => t.id != task.id)
+        items = items.filter((t: Task) => t.id != task.id);
+        dispatch("delete");
     }
 </script>
 
 <div>
-    {#each items as item}
+    {#each items as item(item.id)}
         <TodoItem bind:data={item}
+        on:titleChange
         on:edit={() => dispatch("edit", item)}
         on:delete={() => onDelete(item)}/>
     {/each}
