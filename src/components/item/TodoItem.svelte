@@ -1,12 +1,12 @@
 <script lang="ts">
-    import type { Task } from "../model";
+    import type { Task } from "../../model";
     import TodoItemActions from "./TodoItemActions.svelte";
 
     export let data: Task;
 </script>
 <div>
-    <span contenteditable="true" bind:textContent={data.title}>{data.title}</span>
-    <TodoItemActions on:delete/>
+    <span spellcheck="false" contenteditable="true" bind:textContent={data.title}>{data.title}</span>
+    <TodoItemActions on:delete on:edit/>
 </div>
 
 <style>

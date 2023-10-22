@@ -3,13 +3,17 @@
 
     const dispatch = createEventDispatcher();
 
-    function onDelete(){
+    function onEdit() {
+        dispatch("edit");
+    }
+
+    function onDelete() {
         dispatch("delete");
     }
 </script>
 
 <div>
-    <button >Edit</button>
+    <button on:click={onEdit}>Edit</button>
     <button on:click={onDelete}>Delete</button>
 </div>
 
@@ -17,6 +21,5 @@
     div {
         display: flex;
         gap: 10px;
-
     }
 </style>
