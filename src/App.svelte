@@ -3,17 +3,16 @@
     import TodoItemCreate from "./components//item/TodoItemCreate.svelte";
     import EditTaskModal from "./components/Modal/EditTaskModal.svelte";
     import TodoItems from "./components/item/TodoItems.svelte";
-    import type { Task } from "./model";
     import TaskFilaIo from "./components/file/TaskFileIo.svelte";
+    import { modals } from "./modals";
+    import type { Task } from "./model"
 
     let items: Task[] = [];
-
-    let editTaskModalVisible = false;
-    let editTaskModalData: Task|null = null;
+    const ITEMS_STORAGE_KEY = "todoItems";
 
     function onTaskEdit(e: { detail: Task }){
-        editTaskModalData = structuredClone(e.detail);
-        editTaskModalVisible = true;
+        modals.editTask.data = structuredClone(e.detail);
+        modals.editTask.visible = true;
     }
 
     function onTaskEditSave(e: { detail: Task }){
@@ -24,11 +23,11 @@
     }
 
     function saveToLocalStorage(){
-        window.localStorage.setItem("todoItems", JSON.stringify(items))
+        window.localStorage.setItem(ITEMS_STORAGE_KEY, JSON.stringify(items))
     }
 
     onMount(() => {
-        const todoItems = window.localStorage.getItem("todoItems");
+        const todoItems = window.localStorage.getItem(ITEMS_STORAGE_KEY);
         if(todoItems == null)
             return;
 
@@ -36,12 +35,12 @@
             const data: Task[] = JSON.parse(todoItems);
             items = data;
         } catch (e) {
-            console.log(e);
+            console.error(e);
         }
     })
 </script>
 
-<EditTaskModal bind:visible={editTaskModalVisible} bind:data={editTaskModalData} on:save={onTaskEditSave}/>
-<TodoItems bind:items={items} on:edit={onTaskEdit} on:delete={saveToLocalStorage} on:titleChange={saveToLocalStorage}/>
+<EditTaskModal bind:visible={modals.editTask.visible} bind:data={modals.editTask.data} on:save={onTaskEditSave}/>
+<TodoItems bind:items={items} on:completedChange={saveToLocalStorage} on:edit={onTaskEdit} on:delete={saveToLocalStorage} on:titleChange={saveToLocalStorage}/>
 <TodoItemCreate bind:items={items} on:create={saveToLocalStorage} />
 <TaskFilaIo bind:items={items}/>

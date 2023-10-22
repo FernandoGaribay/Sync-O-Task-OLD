@@ -2,8 +2,8 @@
     import type { Task } from "../../model";
 
     export let items: Task[] = [];
-    let fileName: string = "";
 
+    let fileName: string = "";
     let importFiles: FileList;
 
     function save() {
@@ -32,7 +32,6 @@
         }
 
         reader.readAsText(files[0]);
-        console.log(files[0]);
     }
 
     $: onFilesChanged(importFiles);
@@ -41,11 +40,14 @@
 <div>
     <input type="text" placeholder="File name" bind:value={fileName}/>
     <button on:click={save}>Save file</button>
-    <br>
     <input type="file" bind:files={importFiles}>
 </div>
 
 <style>
+    input[type="file"] {
+        display: block;
+    }
+
     div {
         margin-top: 20px;
     }

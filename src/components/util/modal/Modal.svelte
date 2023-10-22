@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let visible = false;
+    export let visible: boolean = false;
 
     function close() {
         visible = false;
@@ -7,6 +7,8 @@
 </script>
 
 {#if visible}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div class="modal-bg" on:click={close}>
         <div class="modal" on:click|stopPropagation>
             <slot />

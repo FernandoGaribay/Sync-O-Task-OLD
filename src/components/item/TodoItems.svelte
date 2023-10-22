@@ -17,12 +17,13 @@
     {#each items as item(item.id)}
         <TodoItem bind:data={item}
         on:titleChange
+        on:completedChange
         on:edit={() => dispatch("edit", item)}
         on:delete={() => onDelete(item)}/>
     {/each}
 </div>
 
-<button on:click={() => console.log(items)}>Log</button>
+<!--<button on:click={() => console.log(items)}>Log</button>-->
 
 <style>
     div{
