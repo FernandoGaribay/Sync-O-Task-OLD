@@ -5,7 +5,7 @@
     export let data: Task;
 </script>
 <div>
-    <span>{data.title}</span>
+    <span contenteditable="true" bind:textContent={data.title}>{data.title}</span>
     <TodoItemActions on:delete/>
 </div>
 

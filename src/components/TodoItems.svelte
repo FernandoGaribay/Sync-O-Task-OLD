@@ -1,17 +1,34 @@
-<script>
+<script lang="ts">
+    import type { Task } from "../model"
     import TodoItem from "./TodoItem.svelte";
 
-    function onDelete() {
-        alert("Item was deleted");
+    function onDelete(task: Task) {
+        items = items.filter((t: Task) => t.id != task.id)
     }
+
+    let items: Task[] = [
+        {
+            id: "1",
+            title: "Buy some milk",
+            completed: false
+        },
+        {
+            id: "2",
+            title: "Buy some cookies",
+            completed: false
+        },
+        {
+            id: "3",
+            title: "Do my homework",
+            completed: false
+        }
+    ];
 </script>
 
 <div>
-    <TodoItem data={{
-        id: "1",
-        title: "Buy some cookies",
-        completed: false
-    }} on:delete={onDelete}/>
+    {#each items as item}
+        <TodoItem bind:data={item} on:delete={() => onDelete(item)}/>
+    {/each}
 </div>
 
 <style>
