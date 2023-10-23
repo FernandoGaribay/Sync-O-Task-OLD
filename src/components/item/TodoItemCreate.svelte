@@ -19,7 +19,13 @@
         items = [...items, {
             id: uuidv4(),
             title,
-            completed: false
+            completed: false,
+            description: "",
+            tags: [{
+                id: uuidv4(),
+                name: "Health",
+                color: "#FF0000"
+            }]
         }];
 
         dispatch("create")

@@ -3,6 +3,7 @@
     import type { Task } from "../../model";
     import Modal from "../util/modal/Modal.svelte";
     import Button from "../util/button/Button.svelte";
+    import Tags from "../item/tag/Tags.svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -26,11 +27,13 @@
         bind:value={data.title}
     />
 
+    <Tags bind:tags={data.tags} editing={true} />
+
     <textarea class="mt-4 w-full" placeholder="Escribe una descripcion aqui"></textarea>
 
     <div class="flex justify-end gap-2 mt-4">
         <Button color="blue" on:click={save}>Guardar</Button>
-        <Button color="red" on:click={close}>Cerrar</Button>
+        <Button color="red" on:click={close}>Descartar</Button>
     </div>
 </Modal>
 
@@ -38,6 +41,5 @@
 <style>
     textarea {
         min-height: 8rem;
-
     }
 </style>
