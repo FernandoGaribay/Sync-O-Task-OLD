@@ -29,7 +29,5 @@
             bind:completed={data.completed}
         />
     </div>
-    <Tags bind:tags={data.tags} />
+    <Tags bind:tags={data.tags}/>
 </div>
-
-

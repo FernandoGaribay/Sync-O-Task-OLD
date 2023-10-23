@@ -21,11 +21,13 @@
             title,
             completed: false,
             description: "",
-            tags: [{
-                id: uuidv4(),
-                name: "Health",
-                color: "#FF0000"
-            }]
+            tags: [
+                {
+                    id: uuidv4(),
+                    name: "Healt",
+                    color: "#FF0000"
+                }
+            ]
         }];
 
         dispatch("create")
