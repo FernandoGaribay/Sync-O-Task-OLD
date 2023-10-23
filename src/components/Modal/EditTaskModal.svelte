@@ -19,15 +19,25 @@
     }
 </script>
 
-<Modal bind:visible>
+<Modal customClass="w-3/4" bind:visible>
     <h2 class="text-3xl font-bold">Edit Task</h2>
-    <input
-        class="rounded border-2 border-gray-200 p-2 w-full mt-4"
+    <input class="w-full mt-4"
         type="text"
         bind:value={data.title}
     />
+
+    <textarea class="mt-4 w-full" placeholder="Escribe una descripcion aqui"></textarea>
+
     <div class="flex justify-end gap-2 mt-4">
         <Button color="blue" on:click={save}>Guardar</Button>
         <Button color="red" on:click={close}>Cerrar</Button>
     </div>
 </Modal>
+
+
+<style>
+    textarea {
+        min-height: 8rem;
+
+    }
+</style>

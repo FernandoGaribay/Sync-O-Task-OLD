@@ -1,5 +1,6 @@
 <script lang="ts">
     export let visible: boolean = false;
+    export let customClass: string = "";
 
     function close() {
         visible = false;
@@ -10,7 +11,7 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div class="modal-bg" on:click={close}>
-        <div class="modal" on:click|stopPropagation>
+        <div class="modal {customClass}" on:click|stopPropagation>
             <slot />
         </div>
     </div>
@@ -35,6 +36,5 @@
         margin: 15% auto; /* 15% from the top and centered */
         padding: 20px;
         border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
     }
 </style>
