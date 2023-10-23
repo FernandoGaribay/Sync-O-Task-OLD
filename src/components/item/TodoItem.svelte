@@ -11,7 +11,7 @@
         dispatch("titleChange")
     }
 </script>
-<div>
+<div class="rounded bg-white drop-shadow-md">
     <span spellcheck="false" contenteditable="true" on:blur={onTitleBlur} bind:textContent={data.title}></span>
     <TodoItemActions on:delete on:completedChange on:edit bind:completed={data.completed}/>
 </div>
