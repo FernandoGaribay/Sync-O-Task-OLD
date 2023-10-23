@@ -47,6 +47,12 @@
 <body class="bg-gray-50 p-4">
     <EditTaskModal bind:visible={modals.editTask.visible} bind:data={modals.editTask.data} on:save={onTaskEditSave}/>
     <TodoItems bind:items={items} on:completedChange={saveToLocalStorage} on:edit={onTaskEdit} on:delete={saveToLocalStorage} on:titleChange={saveToLocalStorage}/>
-    <TodoItemCreate bind:items={items} on:create={saveToLocalStorage} />
-    <TaskFilaIo bind:items={items}/>
+    <div class="mt-4">
+        <TodoItemCreate bind:items={items} on:create={saveToLocalStorage} />
+    </div>
+    
+    <div class="mt-4">
+        <TaskFilaIo bind:items={items}/>        
+    </div>
+    
 </body>

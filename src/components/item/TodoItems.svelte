@@ -28,17 +28,19 @@
 
 <div class="flex flex-col gap-8">
     {#each lists as list}
-        <div class="flex gap-2 flex-col">
-            {#each list as item (item.id)}
-                <TodoItem
-                    bind:data={item}
-                    on:titleChange
-                    on:completedChange
-                    on:edit={() => dispatch("edit", item)}
-                    on:delete={() => onDelete(item)}
-                />
-            {/each}
-        </div>
+        {#if list.length > 0}
+            <div class="flex gap-2 flex-col">
+                {#each list as item (item.id)}
+                    <TodoItem
+                        bind:data={item}
+                        on:titleChange
+                        on:completedChange
+                        on:edit={() => dispatch("edit", item)}
+                        on:delete={() => onDelete(item)}
+                    />
+                {/each}
+            </div>
+        {/if}
     {/each}
 </div>
 

@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[type="text"]  {
+    
+    @apply border-1 border-gray-300 p-2 rounded;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+.file-input {
+    @apply bg-blue-700 text-white p-2 border-1 border-gray-300 rounded;
+}

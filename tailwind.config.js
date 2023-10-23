@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{js,ts,svelte}", './node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'],
+  content: ["./src/**/*.{js,ts,svelte}"],
   theme: {
-    extend: {},
+    extend: {
+      borderWidth: {
+      '1': '1px'
+    }},
   },
-  plugins: [
-    require('flowbite/plugin')
-  ],
+  plugins: [],
 }
 

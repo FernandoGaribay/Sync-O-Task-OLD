@@ -34,7 +34,6 @@ placeholder="Create a new task..."/>
 <style>
     input {
         padding: 10px;
-        margin-top: 30px;
         width: 100%;
         box-sizing: border-box;
     }
