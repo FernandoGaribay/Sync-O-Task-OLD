@@ -30,6 +30,7 @@
     }
 
     .modal {
+        @apply rounded-xl;
         background-color: #fefefe;
         margin: 15% auto; /* 15% from the top and centered */
         padding: 20px;

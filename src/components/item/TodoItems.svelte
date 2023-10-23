@@ -1,6 +1,6 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
-    import type { Task } from "../../model"
+    import type { Task } from "../../model";
     import TodoItem from "../item/TodoItem.svelte";
 
     const dispatch = createEventDispatcher();
@@ -11,24 +11,35 @@
         items = items.filter((t: Task) => t.id != task.id);
         dispatch("delete");
     }
+
+    $: items = items.sort((b, a) => b.completed - a.completed);
+
+    function getList(items) {
+        return [
+            items.filter((i) => !i.completed),
+            items.filter((i) => i.completed),
+        ];
+    }
+
+    let lists;
+
+    $: lists = getList(items);
 </script>
 
-<div>
-    {#each items as item(item.id)}
-        <TodoItem bind:data={item}
-        on:titleChange
-        on:completedChange
-        on:edit={() => dispatch("edit", item)}
-        on:delete={() => onDelete(item)}/>
+<div class="flex flex-col gap-8">
+    {#each lists as list}
+        <div class="flex gap-2 flex-col">
+            {#each list as item (item.id)}
+                <TodoItem
+                    bind:data={item}
+                    on:titleChange
+                    on:completedChange
+                    on:edit={() => dispatch("edit", item)}
+                    on:delete={() => onDelete(item)}
+                />
+            {/each}
+        </div>
     {/each}
 </div>
 
 <!--<button on:click={() => console.log(items)}>Log</button>-->
-
-<style>
-    div{
-        display: flex;
-        gap: 15px;
-        flex-direction: column;
-    }
-</style>

@@ -38,7 +38,11 @@
             console.error(e);
         }
     })
+    
+
 </script>
+
+
 
 <body class="bg-gray-50 p-4">
     <EditTaskModal bind:visible={modals.editTask.visible} bind:data={modals.editTask.data} on:save={onTaskEditSave}/>

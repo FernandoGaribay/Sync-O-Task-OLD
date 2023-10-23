@@ -2,9 +2,10 @@
     import { createEventDispatcher } from "svelte";
     import type { Task } from "../../model";
     import Modal from "../util/modal/Modal.svelte";
-    
+    import Button from "../util/button/Button.svelte";
+
     const dispatch = createEventDispatcher();
-    
+
     export let visible = false;
     export let data: Task | null;
 
@@ -12,16 +13,21 @@
         visible = false;
     }
 
-    function save(){
+    function save() {
         dispatch("save", data);
         close();
     }
 </script>
 
-<Modal bind:visible={visible}>
-    <h1>Edit Task</h1>
-    <input type="text" bind:value={data.title} />
-    <button on:click={save}>Save</button>
-    <button on:click={close}>Close</button>
-    
+<Modal bind:visible>
+    <h2 class="text-3xl font-bold">Edit Task</h2>
+    <input
+        class="rounded border-2 border-gray-200 p-2 w-full mt-4"
+        type="text"
+        bind:value={data.title}
+    />
+    <div class="flex justify-end gap-2 mt-4">
+        <Button color="blue" on:click={save}>Guardar</Button>
+        <Button color="red" on:click={close}>Cerrar</Button>
+    </div>
 </Modal>
